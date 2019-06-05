@@ -1,0 +1,24 @@
+CLONE REPOSITORY
+
+1)	Move to the directory where you want to clone the git repository
+2)	git clone https://github.com/adam-coogan/gss19_axions.git (repository name)
+
+
+UPLOAD FILE
+
+3)	Move the file to upload to the desired folder (mv file .../directory/)
+4)	git add .
+		--> git status (check)
+5)	git commit -m "commit info (description)"
+		--> git status (check)
+6)	git push
+
+
+MOVE FILE INSIDE GIT REPOSITORY
+
+7)	Move file to desired directory/folder (mv file .../directory/)
+		--> git status (check)
+8)	git add .
+		--> git status (check)
+9)	git commit -m "commit info (description)"
+10)	git push
