@@ -1,0 +1,33 @@
+def dlngs_dlnt(T):
+    
+    decoupling_T = np.array([173e9, 90e9, 4e9, 1e9, 1e8, 511e3])
+    gs_array = [g_s(T) for T in decoupling_T]
+    
+    ln_T = np.log(decoupling_T)
+    ln_gs = np.log(gs_array)
+    
+    deriv = (ln_gs[:-1] - ln_gs[1:])/(ln_T[:-1] - ln_T[1:])
+    
+    
+    if T >= decoupling_T[0]:
+        d_log = 0
+        
+    elif decoupling_T[0] > T >= decoupling_T[1]:
+        d_log = deriv[0]
+    
+    elif decoupling_T[1] > T >= decoupling_T[2]:
+        d_log = deriv[1]
+    
+    elif decoupling_T[2] > T >= decoupling_T[3]:
+        d_log = deriv[2]
+    
+    elif decoupling_T[3] > T >= decoupling_T[4]:
+        d_log = deriv[3]
+        
+    elif decoupling_T[4] > T >= decoupling_T[5]:
+        d_log = deriv[4]
+        
+    elif T < decoupling_T[5]:
+        d_log = 0
+        
+    return d_log
