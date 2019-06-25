@@ -1,0 +1,34 @@
+# Recoil energy between 3 and 10 keV
+# Mass of WIMP between 10 and 1000 GeV
+
+m_array = np.logspace(1, 3, 20)
+sigma_array = np.logspace(-61, -57, 20)
+
+# make a grid
+m, sigma = np.meshgrid(m_array, sigma_array)
+
+# The minus sign comes from the integration of dR/dE_r
+N1_model = - factor_R0 * sigma * mu(m)**2 * (np.exp(-10e3*eV/(r(m)*E0(m))) - np.exp(-3e3*eV/(r(m)*E0(m)))) / m
+N2_model = - factor_R0 * sigma * mu(m)**2 * (np.exp(-20e3*eV/(r(m)*E0(m))) - np.exp(-10e3*eV/(r(m)*E0(m)))) / m
+
+
+
+
+
+# Example for chi_squared calculation
+N1_obs = 10
+N2_obs = 5
+    
+def chi_squared(N1_observed, N2_observed):
+    N1_diff = (N1_model - N1_observed)**2 / N1_model
+    N2_diff = (N2_model - N2_observed)**2 / N2_model
+    return N1_diff + N2_diff
+
+
+
+
+
+# Plot
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+print(chi_squared(N1_obs, N2_obs).shape)
+CS = ax.contour(X, Y, chi_squared(N1_obs, N2_obs), levels=3)
